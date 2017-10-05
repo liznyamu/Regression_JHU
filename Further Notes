@@ -1,0 +1,48 @@
+- Outliers can be the result of spurious or real processes
+- Outlier can have high leverage (ie located/values extremely higher or lower) WITH/WITHOUT influence ( without influence ie they conform to the regression relationship - being marginally outlying in X or Y, but not outlying given the regression relationship)
+
+
+--------------------------------------------------------------------------------
+Influence Measures/ Useful diagnostic Measures (?influence.measures)
+--> rstandard, rstudent
+- variations of residuals (- residuals have the same units as y) without units (allowing comparison of residuals) ie they standardize residuals by dividing by appropiate standard error
+
+--> hatvalues
+- leverage - depicts how far outlying the outlier is from other X's; the further it is the more leverage it has
+- hatvalues (more useful when we can't visualize outliers in models with multiple X values/columns/regressors)
+- hatvalues useful in finding data entry errors (ie extremely large hatvalues -- could imply data entry error)
+
+--> dffits , dfbetas
+- measuring influence (not just the potential for influence like hatValues/leverages)
+- dffits - for every data point, sees how much the fitted value at that X-value changes depending on whether or not that point was included
+- dfbetas - looks specifically at the slope co-efficients -> how much do the slope co-efficients change; whether or not that particular data point is included
+
+ie for dffits - we get one dffit per data point 
+   for dfbetas - we get a dfbeta for every co-efficient for every data point
+   ie 
+   so if we have a linear regression model - we have 2 co-efficients : the intercept and the slope term ; so  dfbetas will be a matrix of 2 by the number of datapoints
+   
+   
+--> cooks.distance
+- cooks.distance is an overall change in our co-efficients 
+- it summarizes the dfbetas
+
+--> resid
+- function resid returns the ordinary residuals 
+- PRESS residuals = resid(fit) / (1 - hatvalues(fit))
+
+--> PRESS redisiduals
+- they are less useful for detecting outliers and determining influenc ; then they are ascertaining things like module fit
+
+-----------------------------------------------------------------------------------
+
+--> Plot the residuals versus the fitted values
+- search for systematic pattern in your residual plot - that's evidence of some kind of lack of fit 
+
+--> Residual QQ plot 
+- that tries to ascertain normality
+
+--> The plot of the leverage values 
+- that tries to acertain that there any points that have high leverage
+- you would want to go and look at those row of data specifically -- maybe there were data entry errors
+
